@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>java</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Oswald">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open Sans">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <style>
+    h1, h2, h3, h4, h5, h6 {
+      font-family: "Oswald"
+    }
+
+    body {
+      font-family: "Open Sans"
+    }
+
+    .box {
+      padding: 20px;
+      text-align: center;
+      width: 40%;
+      margin: 40px auto;
+      border-radius: 10px;
+      background-color: #616161e8;
+      box-sizing: content-box;
+    }
+
+    .box h5 {
+      color: aliceblue;
+    }
+
+    .resultButton {
+      color: white;
+    }
+    
+  </style>
+</head>
+
+<body class="w3-light-grey">
+
+  <!-- Navigation bar with social media icons -->
+  <div class="w3-bar w3-black w3-hide-small">
+    <a href="tel:+123456789" class="w3-bar-item w3-button"><i class="fa fa-phone"></i></a>
+    <a href="mailto:sujira@2192.com" class="w3-bar-item w3-button"><i class="fa fa-envelope"></i></a>
+    <a href="https://www.facebook.com/profile.php?id=100009692220804&mibextid=ZbWKwL"
+      class="w3-bar-item w3-button"><i class="fa fa-facebook-official"></i></a>
+    <a href="https://instagram.com/em_sujira_?igshid=MzMyNGUyNmU2YQ==" class="w3-bar-item w3-button"><i
+        class="fa fa-instagram"></i></a>
+    <a href="api.html" class="w3-bar-item w3-button w3-right">api</a>
+    <a href="java.html" class="w3-bar-item w3-button w3-right">java</a>
+    <a href="index.html" class="w3-bar-item w3-button w3-right">index</a>
+  </div>
+
+  <div class="box">
+    <div class="w3-container">
+      <h5>หาความยาวเส้นทแยงมุมของสี่เหลี่ยมผืนผ้า</h5>
+    </div>
+    <div class="w3-row-padding">
+      <input type="number" id="sideA" placeholder="Length"><br><br>
+      <input type="number" id="sideB" placeholder="Height"><br><br>
+      <button onclick="calculateDiagonal()">Result</button><br>
+      <p class="resultButton" id="result"></p>
+    </div>
+  </div>
+
+  <div class="box">
+    <h5>สุ่มตัวเลขในลูกเต๋า ผลลัพธ์ต้องเป็นตัวเลขจำนวณเต็มตั้งแต่ 1-6</h5>
+    <button onclick="rollDice()">Result</button><br>
+    <p class="resultButton" id="resultContainer"></p>
+  </div>
+
+  <div class="box">
+    <h5 for="numberOfDays">แปลงจำนวนวันเป็นวินาที</h5>
+    <input type="number" id="numberOfDays"><br><br>
+    <button onclick="convertDaysToSeconds()">Result</button>
+    <div class="resultButton" id="resultCon"></div>
+  </div>
+
+  <div class="box">
+    <h5 for="fahrenheitInput">แปลงอุณภูมิจาก farenheit เป็น celsius</h5>
+    <input type="number" id="fahrenheitInput"><br><br>
+    <button onclick="convertToFahrenheit()">Result</button><br>
+    <p class="resultButton" id="resultA"></p>
+  </div>
+
+  <div class="box">
+    <h5 for="numberInput">คำนวนค่า factorial</h5>
+    <input type="number" id="numberInput"><br><br>
+    <button onclick="calculateFactorial()">Result</button><br>
+    <div class="resultButton" id="resultf"></div>
+  </div>
+
+  <script src="script.js"></script>
+
+  <script>
+    // หาความยาวเส้นทแยงมุมของสี่เหลี่ยมผืนผ้า
+    function calculateDiagonal() {
+      var sideA = parseFloat(document.getElementById('sideA').value);
+      var sideB = parseFloat(document.getElementById('sideB').value);
+
+      if (!isNaN(sideA) && !isNaN(sideB)) {
+        var diagonalLength = Math.sqrt(sideA ** 2 + sideB ** 2);
+        document.getElementById('result').innerText = 'Diagonal Length: ' + diagonalLength.toFixed(2);
+      } else {
+        document.getElementById('result').innerText = 'Please enter valid numeric values for both sides.';
+      }
+    }
+    // สุ่มตัวเลขในลูกเต๋า ผลลัพธ์ต้องเป็นตัวเลขจำนวณเต็มตั้งแต่ 1-6
+    function rollDice() {
+      var diceResult = Math.floor(Math.random() * 6) + 1;
+      var newParagraph = document.createElement('p');
+      newParagraph.innerText = 'Dice Result: ' + diceResult;
+      var resultContainer = document.getElementById('resultContainer');
+      resultContainer.innerHTML = '';
+      resultContainer.appendChild(newParagraph);
+    }
+    // แปลงจำนวนวันเป็นวินาที
+    function convertDaysToSeconds() {
+      var numberOfDays = parseFloat(document.getElementById('numberOfDays').value);
+      if (!isNaN(numberOfDays)) {
+        var seconds = numberOfDays * 24 * 60 * 60;
+        var newParagraph = document.createElement('p');
+        newParagraph.innerText = 'Result: ' + seconds + ' seconds';
+        var resultCon = document.getElementById('resultCon');
+        resultCon.innerHTML = '';
+        resultCon.appendChild(newParagraph);
+      } else {
+        document.getElementById('resultCon').innerHTML = 'Please enter a valid number.';
+      }
+    }
+    // แปลงอุณภูมิจาก farenheit เป็น celsius
+    function convertToFahrenheit() {
+      var fahrenheit = parseFloat(document.getElementById('fahrenheitInput').value);
+      if (!isNaN(fahrenheit)) {
+        var celsius = (fahrenheit - 32) * (5 / 9);
+        var newParagraph = document.createElement('p');
+        newParagraph.innerText = 'Temperature in Celsius: ' + celsius.toFixed(2) + ' °C';
+        var resultA = document.getElementById('resultA');
+        resultA.innerHTML = '';
+        resultA.appendChild(newParagraph);
+      } else {
+        document.getElementById('resultA').innerHTML = 'Please enter a valid temperature.';
+      }
+    }
+    // คำนวนค่า factorial
+    function calculateFactorial() {
+      var number = parseInt(document.getElementById('numberInput').value);
+      if (!isNaN(number) && number >= 0) {
+        var factorial = 1;
+        for (var i = 2; i <= number; i++) {
+          factorial *= i;
+        }
+        var newParagraph = document.createElement('p');
+        newParagraph.innerText = 'Factorial of ' + number + ' is: ' + factorial;
+        var resultf = document.getElementById('resultf');
+        resultf.innerHTML = '';
+        resultf.appendChild(newParagraph);
+      } else {
+        document.getElementById('resultf').innerHTML = 'Please enter a valid non-negative integer.';
+      }
+    }
+  </script>
+
+  <div class="w3-center">
+    <iframe width="600" height="371" seamless frameborder="0" scrolling="no" 
+    src="https://docs.google.com/spreadsheets/d/e/2PACX-1vSd_Q0AYcUdvIHU8QKs7eFg9KaP3dYSp0FjPkJEyWV-CbcMqus_I-Hb8r6JLpqKRLWx5DHAkob7A1KV/pubchart?oid=2093159273&amp;format=interactive"></iframe>
+    <br><hr>
+    <div>
+      <canvas id="myChart" width="800" height="400"></canvas>
+    </div>
+    <div><script src="country-by-population.json"></script></div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="w3-center w3-dark-grey " style="padding: 20px;">
+    <a href="#" class="w3-button w3-black w3-padding-large"><i
+        class="fa fa-arrow-up w3-margin-right"></i>To the top</a>
+  </footer>
+</body>
+
+</html>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<script>
+  const ctx = document.getElementById('myChart');
+  fetch('country-by-population.json') // ตั้งชื่อไฟล์ JSON ของคุณตรงนี้
+    .then(response => response.json())
+    .then(data => createPieChart(data))
+    .catch(error => console.error('Error:', error));
+
+  function createPieChart(data) {
+    const countries = data.map(entry => entry.country);
+    const populations = data.map(entry => entry.population);
+
+    new Chart(ctx, {
+      type: 'bar',
+      data: {
+        labels: countries,
+        datasets: [{
+          data: populations,
+          backgroundColor: [
+            'rgba(255, 99, 132, 0.2)',
+            'rgba(255, 159, 64, 0.2)',
+            'rgba(255, 205, 86, 0.2)',
+            'rgba(75, 192, 192, 0.2)',
+            'rgba(54, 162, 235, 0.2)',
+            // เพิ่มสีตามจำนวนประชากรที่มี
+          ],
+          borderColor: [
+            'rgb(255, 99, 132)',
+            'rgb(255, 159, 64)',
+            'rgb(255, 205, 86)',
+            'rgb(75, 192, 192)',
+            'rgb(54, 162, 235)',
+            // เพิ่มสีตามจำนวนประชากรที่มี
+          ],
+          borderWidth: 1
+        }]
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false
+      }
+    });
+  }
+</script>
